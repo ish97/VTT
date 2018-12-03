@@ -1,4 +1,11 @@
-# Here are several data files maded to help multimodal inference and question-answering tasks in Visual Turing Test (VTT) Project. You can use many kinds of information such as wordnet synset number (word sense disambiguation), synonyms, hypernyms, event structure (pre-state, process, post-state), tense, aspect, etc. for each verb in the script of Friends episode 1. 
+# Here are several data files maded to help multimodal inference and question-answering tasks in Visual Turing Test (VTT) Project. 
+You can use many kinds of information:
+    - wordnet synset number (word sense disambiguation)
+    - synonyms
+    - hypernyms
+    - event structure (pre-state, process, post-state)
+    - tense
+    - aspect, etc. for each verb in the script of Friends episode 1. 
 
 
 (1) friends1evstr.json
