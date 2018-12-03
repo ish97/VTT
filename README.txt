@@ -1,12 +1,46 @@
-# VTT
-(1) Verbs_with_concreteness_ratings
-English verbs with concreteness ratings and verbnet class information for VTT project
-The 6903 verbs are listed as a csv file. 
-Each verb includes (lemma, verbnet_verb, verbnet_verb_class, verb_token, concreteness_rating, frequency)
-verbnet_verb and verbnet_verb_class are from verbnet.
-verb_token, concreteness_rating, and frequency are from Brysbaert et. al. (2014)
-We made this list of verbs with concreteness ratings for vision-word mapping task and psycholinguistic study.
-We are going to add more English verbs and finally construct a lexicon by adding various lexical semantic information.
+# Here are several data files maded to help multimodal inference and question-answering tasks in Visual Turing Test (VTT) Project. You can use many kinds of information such as wordnet synset number (word sense disambiguation), synonyms, hypernyms, event structure (pre-state, process, post-state), tense, aspect, etc. for each verb in the script of Friends episode 1. 
+
+
+(1) friends1evstr.json
+This file includes the list of lexical information of each verb in the script of Friends episode 1.
+
+<< DATA EXAMPLE >>
+{'Start':163912
+ 'sentence':'Let me get you some coffee.',
+ 'verbs':{
+           'v1':{'text':'Let',
+                 'wn_synset':'permit.v.01',
+                 'tense':'none',
+                 'aspect':'none',
+                 'event_structure':{'pre-state':'not_happen(getting(me, you, some_coffee))',
+                                    'process':'letting(CAUSER, getting(me, you, some_coffee))',
+                                    'post-state':'happen(getting(me, you, some_coffee))'},
+                 'synonyms':['permit', 'allow', 'let', 'countenance'],
+                 'hypernyms':['accept', 'consent', 'go_for']},
+           'v2':{'text':'get',
+                 'wn_synset':'bring.v.04',
+                 'tense':'none',
+                 'aspect':'none',
+                 'event_structure':{'pre-state':'not_have(you, some_coffee)',
+                                    'process':'getting(I, you, some_coffee)',
+                                    'post-state':'have(you, some_coffee)'},
+                 'synonyms':['bring', 'convey', 'fetch'],
+                 'hypernyms':['transmit', 'transfer', 'transport', 'channel', 'channelize', 'channelise']}}}
+
+<< HOW TO USE >>
+From the lexical information of verbs in the example sentence, you can derive inferences by using event structure, synonyms, and hypernyms.
+
+< Event structure-based inferences >
+Assumed knowledge: this sentence is Monica's talking to Joey.
+Inferences: You (Joey) had not some coffee before this scene 163912
+            You (Joey) have some coffee some time after this scene.
+
+< synonym-based paraphrasing >
+Let me get you some coffee. --> Let me bring you some coffee, Let me convey you some coffee, ...
+
+< hypernym-based inferences >
+Let me get you some coffee --> let me transmit you some coffee, let me transfer you some coffee, ...
+
 
 (2) verbclass.csv (300 English Verbs with WordNet Synsets and Event Structure-based verb classes)
 I annotated aspectual class, semantic class, and Event Structure Type for each WordNet Synset of 300 English verbs.
@@ -22,6 +56,7 @@ Example >
 22,acquire,acquire.v.05,I acquired a passing knowledge of Chinese,transition,COS,CHANGE_STATE
 22,acquire,learn.v.01,She learned dancing from her sister,transition,COS,CHANGE_STATE
 22,acquire,develop.v.03,I acquired a strong aversion to television,transition,COS,CHANGE_STATE
+
 
 (3) EventstructureFrame.py
 This file includes the 23 kinds of event structure frames corresponding to the 23 event structure-based verb classes in verbclass.csv.
@@ -65,5 +100,17 @@ If you have the mapping of video action to text (sentence or word) as an input, 
                hyp.lemma_names()
        When you get hypernyms, you also can derive hypernym-based inferences.
        
+
+(4) Verbs_with_concreteness_ratings
+English verbs with concreteness ratings and verbnet class information for VTT project
+The 6903 verbs are listed as a csv file. 
+Each verb includes (lemma, verbnet_verb, verbnet_verb_class, verb_token, concreteness_rating, frequency)
+verbnet_verb and verbnet_verb_class are from verbnet.
+verb_token, concreteness_rating, and frequency are from Brysbaert et. al. (2014)
+We made this list of verbs with concreteness ratings for vision-word mapping task and psycholinguistic study.
+We are going to add more English verbs and finally construct a lexicon by adding various lexical semantic information.
        
-       
+----------------------------------------------------------------------------------------------------------------------
+Acknowledgements
+
+This work was supported by Institute for Information & Communications Technology Promotion (IITP) grant funded by the Korea government (MSIT) (2017-0-01780, The technology development for event recognition/relational reasoning  and learning knowledge based system for video understanding.
